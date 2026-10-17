@@ -57,7 +57,9 @@ async def fetch(urls):
         cache_mode=CacheMode.BYPASS,
         capture_network_requests=True,  # grab the JSON the app fetches
         wait_until="networkidle",
-        delay_before_return_html=5,     # let the single-page app finish loading
+        # the dashboard is a JS app: wait until it has drawn real content
+        wait_for="js:() => document.body.innerText.length > 300",
+        delay_before_return_html=3,
         page_timeout=60000,
     )
 

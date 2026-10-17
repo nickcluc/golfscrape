@@ -28,3 +28,18 @@ You can pass specific dashboard pages to `fetch`, e.g.
   them directly later without a browser.
 
 If the `.md` file looks like a login page, your session expired. Run `login` again.
+
+## Faster: export everything straight from the API
+
+Once logged in, the dashboard stores two cookies on dashboard.arccosgolf.com:
+`access_token` and `user_id`. Put them in `auth.json`:
+
+    {"access_token": "...", "user_id": "..."}
+
+Then:
+
+    python arccos_export.py auth.json export
+
+This writes `rounds.csv`, `holes.csv`, `shots.csv` (club, distance, GPS
+start/end for every shot), `clubs.csv`, plus raw JSON for strokes gained and
+smart distances. No browser needed. Never commit `auth.json`.
