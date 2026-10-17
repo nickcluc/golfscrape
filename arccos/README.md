@@ -43,3 +43,16 @@ Then:
 This writes `rounds.csv`, `holes.csv`, `shots.csv` (club, distance, GPS
 start/end for every shot), `clubs.csv`, plus raw JSON for strokes gained and
 smart distances. No browser needed. Never commit `auth.json`.
+
+## Course map to GSPro (OPCD)
+
+`arccos_to_opcd.py` turns Arccos hole maps (`/courses/{id}/holes/{n}?courseVersion={v}`)
+into an OPCD-coloured SVG (1 mm = 1 m, UTM, one Inkscape layer per surface),
+a GeoJSON of every shape, and the UTM bounds to line it up with Lidar.
+
+    python arccos_to_opcd.py export/holes 6878 4 tedesco opcd 32619
+
+Arccos shape types (from the Arccos dashboard's own lookup): 1 Green, 2/3 Sand
+Trap, 4/5 Water, 6 Tee, 7 Fairway, 8 Fairway Center, 9 Trees, 10 Bounding Box,
+11 No Shot, 12 Out Of Bounds. Colours follow csites/osm2svg4opcd `styles.json`.
+The map data belongs to Arccos: keep builds from it for personal use.
