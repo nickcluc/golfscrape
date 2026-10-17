@@ -14,7 +14,7 @@ for x in holes: by[x['hole']].append(x)
 rows=[]
 for k in sorted(by):
     v=by[k]; tp=[x['to_par'] for x in v]; f=[x for x in v if x['par']>3 and x['fw'] in('T','F')]
-    rows.append(dict(hole=k,par=v[0]['par'],yards=round(st.median([x['len'] for x in v if x['len']]) * 1.0936133)  # Arccos tee distances are metres,played=len(v),avg_to_par=round(st.mean(tp),2),
+    rows.append(dict(hole=k,par=v[0]['par'],yards=round(st.median([x['len'] for x in v if x['len']]) * 1.0936133),played=len(v),avg_to_par=round(st.mean(tp),2),
         par_or_better_pct=pct(sum(t<=0 for t in tp),len(v)),double_plus_pct=pct(sum(t>=2 for t in tp),len(v)),
         fairway_pct=pct(sum(x['fw']=='T' for x in f),len(f)) if f else None,gir_pct=pct(sum(x['gir'] for x in v),len(v)),
         three_putt_pct=pct(sum((x['putts'] or 0)>=3 for x in v),len(v)),penalties=sum(x['pens'] for x in v)))
