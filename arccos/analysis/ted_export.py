@@ -14,7 +14,7 @@ for x in holes: by[x['hole']].append(x)
 rows=[]
 for k in sorted(by):
     v=by[k]; tp=[x['to_par'] for x in v]; f=[x for x in v if x['par']>3 and x['fw'] in('T','F')]
-    rows.append(dict(hole=k,par=v[0]['par'],yards=round(st.median([x['len'] for x in v if x['len']])),played=len(v),avg_to_par=round(st.mean(tp),2),
+    rows.append(dict(hole=k,par=v[0]['par'],yards=round(st.median([x['len'] for x in v if x['len']]) * 1.0936133)  # Arccos tee distances are metres,played=len(v),avg_to_par=round(st.mean(tp),2),
         par_or_better_pct=pct(sum(t<=0 for t in tp),len(v)),double_plus_pct=pct(sum(t>=2 for t in tp),len(v)),
         fairway_pct=pct(sum(x['fw']=='T' for x in f),len(f)) if f else None,gir_pct=pct(sum(x['gir'] for x in v),len(v)),
         three_putt_pct=pct(sum((x['putts'] or 0)>=3 for x in v),len(v)),penalties=sum(x['pens'] for x in v)))
@@ -37,7 +37,7 @@ for hn in sorted({x['hole'] for x in holes if x['par']==3}):
     pin=[yd(t['startLat'],t['startLong'],*x['pin']) for t,x in zip(s,v)]
     gap=[sd.get(t['clubId'],0)-p for t,p in zip(s,pin) if t['clubId'] in sd]
     al=[bearing_err(t,x['pin'])[0] for t,x in zip(s,v)]
-    rows.append(dict(hole=hn,scorecard_yd=round(st.median([x['len'] for x in v if x['len']])),avg_pin_yd=round(st.mean(pin)),club_vs_pin_yd=r1(st.mean(gap)),
+    rows.append(dict(hole=hn,scorecard_yd=round(st.median([x['len'] for x in v if x['len']]) * 1.0936133),avg_pin_yd=round(st.mean(pin)),club_vs_pin_yd=r1(st.mean(gap)),
         avg_finish_vs_pin_yd=r1(st.mean(al)),finish_short_pct=pct(sum(a<-5 for a in al),len(al)),gir_pct=pct(sum(x['gir'] for x in v),len(v)),avg_to_par=round(st.mean([x['to_par'] for x in v]),2)))
 w('ted_par3',rows)
 # short game

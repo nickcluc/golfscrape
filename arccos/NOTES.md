@@ -23,6 +23,7 @@ Where things stand, so work can pick up in a new session.
 
 Gotchas:
 - Hole score = `noOfShots` (shots + penalty strokes).
+- Tee `distance` in hole maps is METRES (no API option for yards); multiply by 1.0936 for yards.
 - Holed shots have no end GPS; use the pin (`pinLat`/`pinLong` on the hole).
 - Round category "handicaps" use negative = regular handicap, positive = plus.
   Averaging them per round is misleading; use the SGA endpoint instead.
