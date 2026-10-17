@@ -61,6 +61,7 @@ Good for a height check, not for terrain.
 
 - Dashboard: https://claude.ai/artifact/Bft7b4AawT2woNiLCtQ5Y4
 - GSPro build plan: https://claude.ai/artifact/Qqft4FVZmSqxZtxoRQD7te
+- Build log (scorecard, renders, findings): https://claude.ai/artifact/5NHyUhWuUHzEf1gcJDf2o8
 
 ## Next steps (GSPro build)
 
